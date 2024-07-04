@@ -62,9 +62,11 @@ class SingleLinkedList {
             return temp;
         }
         [[nodiscard]] reference operator*() const noexcept {
+            assert(node_->next_node != nullptr);
             return node_->value;
         }
         [[nodiscard]] pointer operator->() const noexcept {
+            assert(node_->next_node != nullptr);
             return &(node_->value);
         }
 
@@ -106,6 +108,7 @@ class SingleLinkedList {
     }
 
     Iterator InsertAfter(ConstIterator pos, const Type &value) {
+        assert(pos != ConstIterator(nullptr));
         Node *new_node = new Node(value, pos.node_->next_node);
         pos.node_->next_node = new_node;
         ++size_;
